@@ -45,41 +45,53 @@
         }
         .font-playfair { font-family: 'Playfair Display', serif; }
         
-        /* 1. Tekstur Kayu (Wood Grain Texture) */
+        /* 1. Tekstur Kayu Jawa (Wood Grain Texture) yang Lebih Kaya */
         .wood-texture {
             background-color: #5C2811;
             background-image: 
-                linear-gradient(90deg, rgba(0,0,0,0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,0,0,0.15) 1px, transparent 1px),
                 linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-                radial-gradient(ellipse at center, #6B3416 0%, #4A200D 100%);
+                radial-gradient(ellipse at center, #6B3416 0%, #3a190B 100%);
             background-size: 4px 4px, 4px 4px, 100% 100%;
-        }
-
-        /* 2. Pola Batik Kawung / Parang (Subtle Background Pattern) */
-        .batik-pattern {
-            background-color: #FAF5EF;
-            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23D4AF37' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-        }
-
-        /* 3. Frame Ukiran Emas Etnik */
-        .ornate-frame {
             position: relative;
-            border: 2px solid #D4AF37;
-            padding: 20px;
-            background: rgba(250, 245, 239, 0.95);
-            box-shadow: 0 0 20px rgba(124, 45, 18, 0.1);
         }
-        .ornate-frame::before, .ornate-frame::after {
+        /* Overlay Batik pada Wood Texture */
+        .wood-texture::before {
             content: '';
             position: absolute;
-            width: 30px;
-            height: 30px;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23D4AF37'%3E%3Cpath d='M12 2L14.5 9H22L16 13.5L18.5 21L12 16.5L5.5 21L8 13.5L2 9H9.5L12 2Z'/%3E%3C/svg%3E");
-            background-size: contain;
-            background-repeat: no-repeat;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23D4AF37' fill-opacity='0.05'%3E%3Cpath d='M20 20.5V18H0v-2h20v-2.5L10 4 20 0v10h20v2H20v2.5L30 16 20 20.5z'/%3E%3C/g%3E%3C/svg%3E");
+            pointer-events: none;
         }
-        .ornate-frame::before { top: -15px; left: -15px; }
-        .ornate-frame::after { bottom: -15px; right: -15px; transform: rotate(180deg); }
+
+        /* 2. Pola Batik Halus untuk Background Utama */
+        .batik-pattern {
+            background-color: #FAF5EF;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%237C2D12' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        /* 3. Bingkai Ukiran Emas Premium dengan Shadow Lembut */
+        .ornate-frame {
+            position: relative;
+            border: 2px solid rgba(212, 175, 55, 0.8);
+            background: rgba(255, 251, 245, 0.95);
+            /* Box shadow emas lembut agar timbul */
+            box-shadow: 0 10px 30px -5px rgba(124, 45, 18, 0.15), 0 0 15px rgba(212, 175, 55, 0.2);
+            padding: 2rem;
+            border-radius: 2px;
+        }
+        /* Sudut Ukiran Vintage */
+        .corner-decor {
+            position: absolute;
+            width: 32px;
+            height: 32px;
+            z-index: 5;
+            pointer-events: none;
+        }
+        .corner-tl { top: -12px; left: -12px; }
+        .corner-tr { top: -12px; right: -12px; transform: rotate(90deg); }
+        .corner-bl { bottom: -12px; left: -12px; transform: rotate(-90deg); }
+        .corner-br { bottom: -12px; right: -12px; transform: rotate(180deg); }
 
         /* Reveal Animation */
         .reveal {
@@ -101,6 +113,19 @@
         
         /* Floating Shadow for Wayang */
         .wayang-shadow { filter: drop-shadow(0 4px 6px rgba(92, 40, 17, 0.2)); }
+
+        /* Watermark Gunungan di belakang teks */
+        .gunungan-watermark {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            max-width: 500px;
+            opacity: 0.04;
+            pointer-events: none;
+            z-index: 0;
+        }
     </style>
 </head>
 <body class="batik-pattern text-wood overflow-x-hidden">
@@ -109,47 +134,48 @@
     <section id="cover" class="fixed inset-0 z-50 flex items-center justify-center wood-texture no-scroll transition-opacity duration-1000">
         
         <!-- Bingkai Ukiran Luar Cover -->
-        <div class="absolute inset-4 md:inset-8 border-2 border-gold/80 flex flex-col items-center justify-center text-center p-6 relative">
+        <div class="absolute inset-4 md:inset-8 border-2 border-gold/80 flex flex-col items-center justify-center text-center p-6 relative z-10">
             
-            <!-- Ornamen Sudut Ukiran -->
-            <svg class="absolute top-0 left-0 w-20 h-20 text-gold" viewBox="0 0 100 100" fill="currentColor">
-                <path d="M0 0 L40 0 C40 20 20 40 0 40 Z M10 10 L30 10 C30 20 20 30 10 30 Z" opacity="0.8"/>
-                <path d="M0 0 L20 0 L0 20 Z" opacity="0.4"/>
+            <!-- Ornamen Sudut Ukiran Besar -->
+            <svg class="absolute top-0 left-0 w-24 h-24 text-gold" viewBox="0 0 100 100" fill="currentColor">
+                <path d="M0 0 L50 0 C50 25 25 50 0 50 Z M10 10 L35 10 C35 25 25 35 10 35 Z" opacity="0.9"/>
+                <path d="M0 0 L20 0 L0 20 Z" opacity="0.5"/>
             </svg>
-            <svg class="absolute top-0 right-0 w-20 h-20 text-gold transform rotate-90" viewBox="0 0 100 100" fill="currentColor">
-                <path d="M0 0 L40 0 C40 20 20 40 0 40 Z M10 10 L30 10 C30 20 20 30 10 30 Z" opacity="0.8"/>
+            <svg class="absolute top-0 right-0 w-24 h-24 text-gold transform rotate-90" viewBox="0 0 100 100" fill="currentColor">
+                <path d="M0 0 L50 0 C50 25 25 50 0 50 Z M10 10 L35 10 C35 25 25 35 10 35 Z" opacity="0.9"/>
             </svg>
-            <svg class="absolute bottom-0 left-0 w-20 h-20 text-gold transform -rotate-90" viewBox="0 0 100 100" fill="currentColor">
-                <path d="M0 0 L40 0 C40 20 20 40 0 40 Z M10 10 L30 10 C30 20 20 30 10 30 Z" opacity="0.8"/>
+            <svg class="absolute bottom-0 left-0 w-24 h-24 text-gold transform -rotate-90" viewBox="0 0 100 100" fill="currentColor">
+                <path d="M0 0 L50 0 C50 25 25 50 0 50 Z M10 10 L35 10 C35 25 25 35 10 35 Z" opacity="0.9"/>
             </svg>
-            <svg class="absolute bottom-0 right-0 w-20 h-20 text-gold transform rotate-180" viewBox="0 0 100 100" fill="currentColor">
-                <path d="M0 0 L40 0 C40 20 20 40 0 40 Z M10 10 L30 10 C30 20 20 30 10 30 Z" opacity="0.8"/>
+            <svg class="absolute bottom-0 right-0 w-24 h-24 text-gold transform rotate-180" viewBox="0 0 100 100" fill="currentColor">
+                <path d="M0 0 L50 0 C50 25 25 50 0 50 Z M10 10 L35 10 C35 25 25 35 10 35 Z" opacity="0.9"/>
             </svg>
 
             <!-- Ornamen Gunungan Atas -->
-            <div class="mb-6 wayang-shadow">
-                <svg class="w-24 h-24 text-gold" viewBox="0 0 100 100" fill="currentColor">
+            <div class="mb-6 wayang-shadow relative">
+                <svg class="w-28 h-28 text-gold" viewBox="0 0 100 100" fill="currentColor">
                     <path d="M50 5 C30 20 10 40 10 70 L25 70 L25 95 L75 95 L75 70 L90 70 C90 40 70 20 50 5 Z M50 25 C60 35 70 50 70 65 L30 65 C30 50 40 35 50 25 Z" />
+                    <path d="M50 35 L55 45 L50 55 L45 45 Z" fill="#5C2811" opacity="0.3"/>
                 </svg>
             </div>
 
-            <p class="font-playfair italic text-gold text-lg md:text-xl tracking-[0.3em] uppercase">Walimatul 'Ursy</p>
-            <h1 class="font-playfair text-ivory text-5xl md:text-7xl font-bold my-6 drop-shadow-lg">Sugeng Rawuh</h1>
+            <p class="font-playfair italic text-gold text-lg md:text-xl tracking-[0.3em] uppercase relative z-10">Walimatul 'Ursy</p>
+            <h1 class="font-playfair text-ivory text-5xl md:text-7xl font-bold my-6 drop-shadow-lg relative z-10">Sugeng Rawuh</h1>
             
             <!-- Pembatas Etnik Cover -->
-            <div class="flex items-center justify-center gap-4 my-4">
+            <div class="flex items-center justify-center gap-4 my-4 relative z-10">
                 <div class="w-16 h-px bg-gold"></div>
                 <i class="fas fa-leaf text-gold text-sm"></i>
                 <div class="w-16 h-px bg-gold"></div>
             </div>
 
-            <p class="text-ivory/80 text-sm md:text-base font-light tracking-wider mb-8">Kepada Yth. Bapak/Ibu/Saudara/i</p>
+            <p class="text-ivory/80 text-sm md:text-base font-light tracking-wider mb-8 relative z-10">Kepada Yth. Bapak/Ibu/Saudara/i</p>
             
-            <div class="mb-8">
+            <div class="mb-8 relative z-10">
                 <h2 class="font-playfair text-ivory text-4xl md:text-6xl">Bramantyo <span class="text-gold font-light italic">&</span> Sekartaji</h2>
             </div>
 
-            <button id="openInvitationBtn" class="bg-gold text-wood px-10 py-4 rounded-full font-semibold hover:bg-ivory transition-all duration-300 shadow-2xl flex items-center gap-3 group border-2 border-ivory/20">
+            <button id="openInvitationBtn" class="bg-gold text-wood px-10 py-4 rounded-full font-semibold hover:bg-ivory transition-all duration-300 shadow-2xl flex items-center gap-3 group border-2 border-ivory/20 relative z-10">
                 <i class="fas fa-envelope-open-text group-hover:scale-110 transition-transform"></i>
                 Buka Undangan
             </button>
@@ -170,9 +196,19 @@
     <main class="relative z-10">
 
         <!-- ================= 3. QUOTE SECTION ================= -->
-        <section id="quote" class="min-h-screen flex items-center justify-center px-6 py-20 relative reveal">
-            <div class="max-w-2xl text-center ornate-frame p-10 md:p-16 shadow-2xl">
-                
+        <section id="quote" class="min-h-screen flex items-center justify-center px-6 py-20 relative reveal overflow-hidden">
+            <!-- Watermark Gunungan -->
+            <svg class="gunungan-watermark text-wood" viewBox="0 0 100 100" fill="currentColor">
+                <path d="M50 5 C30 20 10 40 10 70 L25 70 L25 95 L75 95 L75 70 L90 70 C90 40 70 20 50 5 Z" />
+            </svg>
+
+            <div class="max-w-2xl text-center ornate-frame p-10 md:p-16 relative z-10 w-full">
+                <!-- 4 Sudut Ukiran Vintage -->
+                <svg class="corner-decor corner-tl text-gold" viewBox="0 0 100 100" fill="currentColor"><path d="M0,0 L50,0 C50,25 25,50 0,50 Z M10,10 L35,10 C35,25 25,35 10,35 Z" opacity="0.9"/></svg>
+                <svg class="corner-decor corner-tr text-gold" viewBox="0 0 100 100" fill="currentColor"><path d="M0,0 L50,0 C50,25 25,50 0,50 Z M10,10 L35,10 C35,25 25,35 10,35 Z" opacity="0.9"/></svg>
+                <svg class="corner-decor corner-bl text-gold" viewBox="0 0 100 100" fill="currentColor"><path d="M0,0 L50,0 C50,25 25,50 0,50 Z M10,10 L35,10 C35,25 25,35 10,35 Z" opacity="0.9"/></svg>
+                <svg class="corner-decor corner-br text-gold" viewBox="0 0 100 100" fill="currentColor"><path d="M0,0 L50,0 C50,25 25,50 0,50 Z M10,10 L35,10 C35,25 25,35 10,35 Z" opacity="0.9"/></svg>
+
                 <!-- Ornamen Bunga Jawa Atas -->
                 <svg class="w-16 h-16 mx-auto mb-6 text-gold" viewBox="0 0 100 100" fill="currentColor">
                     <path d="M50 10 C60 25 75 25 90 20 C85 35 85 50 90 65 C75 60 60 60 50 90 C40 60 25 60 10 65 C15 50 15 35 10 20 C25 25 40 25 50 10 Z M50 40 C55 40 60 45 60 50 C60 55 55 60 50 60 C45 60 40 55 40 50 C40 45 45 40 50 40 Z"/>
@@ -195,25 +231,32 @@
         </section>
 
         <!-- ================= 4. PROFILE MEMPELAI ================= -->
-        <section id="profile" class="py-20 px-6 relative reveal">
-            <div class="max-w-3xl mx-auto text-center">
+        <section id="profile" class="py-20 px-6 relative reveal overflow-hidden">
+            <!-- Watermark Gunungan -->
+            <svg class="gunungan-watermark text-wood" viewBox="0 0 100 100" fill="currentColor">
+                <path d="M50 5 C30 20 10 40 10 70 L25 70 L25 95 L75 95 L75 70 L90 70 C90 40 70 20 50 5 Z" />
+            </svg>
+
+            <div class="max-w-3xl mx-auto text-center relative z-10">
                 <p class="font-playfair italic text-gold text-lg mb-2 uppercase tracking-widest">Walimatul 'Ursy</p>
                 <h2 class="font-playfair text-4xl md:text-6xl font-bold mb-12 text-wood">Mempelai</h2>
                 
                 <!-- Siluet Wayang Pria -->
                 <div class="flex justify-center mb-8">
                     <svg class="w-24 h-32 text-wood wayang-shadow" viewBox="0 0 100 150" fill="currentColor">
-                        <!-- Mahkota Wayang -->
                         <path d="M50 0 L40 20 L60 20 Z M30 20 L70 20 L65 30 L35 30 Z" />
-                        <!-- Wajah & Badan -->
                         <path d="M35 30 C35 45 65 45 65 30 C70 50 80 70 70 100 L60 100 L60 150 L40 150 L40 100 L30 100 C20 70 30 50 35 30 Z" />
-                        <!-- Aksesoris Tangan -->
                         <path d="M30 60 L10 80 L15 85 L35 65 Z M70 60 L90 80 L85 85 L65 65 Z" opacity="0.8"/>
                     </svg>
                 </div>
 
                 <!-- Profil Pria -->
-                <div class="mb-12">
+                <div class="mb-12 ornate-frame max-w-md mx-auto">
+                    <svg class="corner-decor corner-tl text-gold" viewBox="0 0 100 100" fill="currentColor"><path d="M0,0 L50,0 C50,25 25,50 0,50 Z M10,10 L35,10 C35,25 25,35 10,35 Z" opacity="0.9"/></svg>
+                    <svg class="corner-decor corner-tr text-gold" viewBox="0 0 100 100" fill="currentColor"><path d="M0,0 L50,0 C50,25 25,50 0,50 Z M10,10 L35,10 C35,25 25,35 10,35 Z" opacity="0.9"/></svg>
+                    <svg class="corner-decor corner-bl text-gold" viewBox="0 0 100 100" fill="currentColor"><path d="M0,0 L50,0 C50,25 25,50 0,50 Z M10,10 L35,10 C35,25 25,35 10,35 Z" opacity="0.9"/></svg>
+                    <svg class="corner-decor corner-br text-gold" viewBox="0 0 100 100" fill="currentColor"><path d="M0,0 L50,0 C50,25 25,50 0,50 Z M10,10 L35,10 C35,25 25,35 10,35 Z" opacity="0.9"/></svg>
+                    
                     <p class="font-jakarta text-sm uppercase tracking-widest text-wood/70 mb-3">Mempelai Pria</p>
                     <h3 class="font-playfair text-4xl md:text-5xl font-bold text-wood mb-4">Bramantyo Aji</h3>
                     <p class="font-jakarta text-base text-wood/80 leading-relaxed">
@@ -236,17 +279,19 @@
                 <!-- Siluet Wayang Wanita -->
                 <div class="flex justify-center mb-8">
                     <svg class="w-24 h-32 text-wood wayang-shadow" viewBox="0 0 100 150" fill="currentColor">
-                        <!-- Mahkota Gadis -->
                         <path d="M35 0 L65 0 L60 15 L40 15 Z M40 15 L60 15 L55 25 L45 25 Z" />
-                        <!-- Wajah & Badan Jamak (Kebaya) -->
                         <path d="M40 25 C40 40 60 40 60 25 C70 45 85 70 75 110 L60 110 L60 150 L40 150 L40 110 L25 110 C15 70 30 45 40 25 Z" />
-                        <!-- Aksesoris Tangan -->
                         <path d="M25 70 L5 90 L10 95 L30 75 Z M75 70 L95 90 L90 95 L70 75 Z" opacity="0.8"/>
                     </svg>
                 </div>
 
                 <!-- Profil Wanita -->
-                <div class="mt-4">
+                <div class="mt-4 ornate-frame max-w-md mx-auto">
+                    <svg class="corner-decor corner-tl text-gold" viewBox="0 0 100 100" fill="currentColor"><path d="M0,0 L50,0 C50,25 25,50 0,50 Z M10,10 L35,10 C35,25 25,35 10,35 Z" opacity="0.9"/></svg>
+                    <svg class="corner-decor corner-tr text-gold" viewBox="0 0 100 100" fill="currentColor"><path d="M0,0 L50,0 C50,25 25,50 0,50 Z M10,10 L35,10 C35,25 25,35 10,35 Z" opacity="0.9"/></svg>
+                    <svg class="corner-decor corner-bl text-gold" viewBox="0 0 100 100" fill="currentColor"><path d="M0,0 L50,0 C50,25 25,50 0,50 Z M10,10 L35,10 C35,25 25,35 10,35 Z" opacity="0.9"/></svg>
+                    <svg class="corner-decor corner-br text-gold" viewBox="0 0 100 100" fill="currentColor"><path d="M0,0 L50,0 C50,25 25,50 0,50 Z M10,10 L35,10 C35,25 25,35 10,35 Z" opacity="0.9"/></svg>
+
                     <p class="font-jakarta text-sm uppercase tracking-widest text-wood/70 mb-3">Mempelai Wanita</p>
                     <h3 class="font-playfair text-4xl md:text-5xl font-bold text-wood mb-4">Sekartaji Dewi</h3>
                     <p class="font-jakarta text-base text-wood/80 leading-relaxed">
@@ -260,26 +305,39 @@
         </section>
 
         <!-- ================= 5. DETAIL ACARA & MAPS ================= -->
-        <section id="event" class="py-20 px-6 relative reveal">
-            <div class="max-w-3xl mx-auto text-center">
+        <section id="event" class="py-20 px-6 relative reveal overflow-hidden">
+            <!-- Watermark Gunungan -->
+            <svg class="gunungan-watermark text-wood" viewBox="0 0 100 100" fill="currentColor">
+                <path d="M50 5 C30 20 10 40 10 70 L25 70 L25 95 L75 95 L75 70 L90 70 C90 40 70 20 50 5 Z" />
+            </svg>
+
+            <div class="max-w-3xl mx-auto text-center relative z-10">
                 <p class="font-playfair italic text-gold text-lg mb-2 uppercase tracking-widest">Rundutan Acara</p>
                 <h2 class="font-playfair text-4xl md:text-6xl font-bold mb-12 text-wood">Tedhak Siti</h2>
 
                 <!-- Countdown Timer dengan Bingkai Ukiran -->
                 <div class="grid grid-cols-4 gap-3 md:gap-4 mb-12 max-w-xl mx-auto">
                     <div class="ornate-frame p-3">
+                        <svg class="corner-decor corner-tl text-gold w-6 h-6" viewBox="0 0 100 100" fill="currentColor"><path d="M0,0 L50,0 C50,25 25,50 0,50 Z" opacity="0.9"/></svg>
+                        <svg class="corner-decor corner-br text-gold w-6 h-6" viewBox="0 0 100 100" fill="currentColor"><path d="M0,0 L50,0 C50,25 25,50 0,50 Z" opacity="0.9"/></svg>
                         <h3 id="days" class="font-playfair text-3xl md:text-5xl font-bold text-wood">00</h3>
                         <p class="text-[10px] md:text-xs uppercase tracking-wider text-wood/70">Hari</p>
                     </div>
                     <div class="ornate-frame p-3">
+                        <svg class="corner-decor corner-tl text-gold w-6 h-6" viewBox="0 0 100 100" fill="currentColor"><path d="M0,0 L50,0 C50,25 25,50 0,50 Z" opacity="0.9"/></svg>
+                        <svg class="corner-decor corner-br text-gold w-6 h-6" viewBox="0 0 100 100" fill="currentColor"><path d="M0,0 L50,0 C50,25 25,50 0,50 Z" opacity="0.9"/></svg>
                         <h3 id="hours" class="font-playfair text-3xl md:text-5xl font-bold text-wood">00</h3>
                         <p class="text-[10px] md:text-xs uppercase tracking-wider text-wood/70">Jam</p>
                     </div>
                     <div class="ornate-frame p-3">
+                        <svg class="corner-decor corner-tl text-gold w-6 h-6" viewBox="0 0 100 100" fill="currentColor"><path d="M0,0 L50,0 C50,25 25,50 0,50 Z" opacity="0.9"/></svg>
+                        <svg class="corner-decor corner-br text-gold w-6 h-6" viewBox="0 0 100 100" fill="currentColor"><path d="M0,0 L50,0 C50,25 25,50 0,50 Z" opacity="0.9"/></svg>
                         <h3 id="minutes" class="font-playfair text-3xl md:text-5xl font-bold text-wood">00</h3>
                         <p class="text-[10px] md:text-xs uppercase tracking-wider text-wood/70">Menit</p>
                     </div>
                     <div class="ornate-frame p-3">
+                        <svg class="corner-decor corner-tl text-gold w-6 h-6" viewBox="0 0 100 100" fill="currentColor"><path d="M0,0 L50,0 C50,25 25,50 0,50 Z" opacity="0.9"/></svg>
+                        <svg class="corner-decor corner-br text-gold w-6 h-6" viewBox="0 0 100 100" fill="currentColor"><path d="M0,0 L50,0 C50,25 25,50 0,50 Z" opacity="0.9"/></svg>
                         <h3 id="seconds" class="font-playfair text-3xl md:text-5xl font-bold text-wood">00</h3>
                         <p class="text-[10px] md:text-xs uppercase tracking-wider text-wood/70">Detik</p>
                     </div>
@@ -288,6 +346,11 @@
                 <div class="grid md:grid-cols-2 gap-8 mb-12">
                     <!-- Akad -->
                     <div class="ornate-frame p-8 text-center">
+                        <svg class="corner-decor corner-tl text-gold" viewBox="0 0 100 100" fill="currentColor"><path d="M0,0 L50,0 C50,25 25,50 0,50 Z M10,10 L35,10 C35,25 25,35 10,35 Z" opacity="0.9"/></svg>
+                        <svg class="corner-decor corner-tr text-gold" viewBox="0 0 100 100" fill="currentColor"><path d="M0,0 L50,0 C50,25 25,50 0,50 Z M10,10 L35,10 C35,25 25,35 10,35 Z" opacity="0.9"/></svg>
+                        <svg class="corner-decor corner-bl text-gold" viewBox="0 0 100 100" fill="currentColor"><path d="M0,0 L50,0 C50,25 25,50 0,50 Z M10,10 L35,10 C35,25 25,35 10,35 Z" opacity="0.9"/></svg>
+                        <svg class="corner-decor corner-br text-gold" viewBox="0 0 100 100" fill="currentColor"><path d="M0,0 L50,0 C50,25 25,50 0,50 Z M10,10 L35,10 C35,25 25,35 10,35 Z" opacity="0.9"/></svg>
+                        
                         <i class="fas fa-ring text-gold text-4xl mb-4"></i>
                         <h3 class="font-playfair text-3xl font-bold mb-4 text-wood">Akad Nikah</h3>
                         <p class="font-jakarta text-wood/80 text-lg">
@@ -297,6 +360,11 @@
                     </div>
                     <!-- Resepsi -->
                     <div class="ornate-frame p-8 text-center">
+                        <svg class="corner-decor corner-tl text-gold" viewBox="0 0 100 100" fill="currentColor"><path d="M0,0 L50,0 C50,25 25,50 0,50 Z M10,10 L35,10 C35,25 25,35 10,35 Z" opacity="0.9"/></svg>
+                        <svg class="corner-decor corner-tr text-gold" viewBox="0 0 100 100" fill="currentColor"><path d="M0,0 L50,0 C50,25 25,50 0,50 Z M10,10 L35,10 C35,25 25,35 10,35 Z" opacity="0.9"/></svg>
+                        <svg class="corner-decor corner-bl text-gold" viewBox="0 0 100 100" fill="currentColor"><path d="M0,0 L50,0 C50,25 25,50 0,50 Z M10,10 L35,10 C35,25 25,35 10,35 Z" opacity="0.9"/></svg>
+                        <svg class="corner-decor corner-br text-gold" viewBox="0 0 100 100" fill="currentColor"><path d="M0,0 L50,0 C50,25 25,50 0,50 Z M10,10 L35,10 C35,25 25,35 10,35 Z" opacity="0.9"/></svg>
+
                         <i class="fas fa-utensils text-gold text-4xl mb-4"></i>
                         <h3 class="font-playfair text-3xl font-bold mb-4 text-wood">Resepsi</h3>
                         <p class="font-jakarta text-wood/80 text-lg">
@@ -335,15 +403,25 @@
         </section>
 
         <!-- ================= 6. RSVP & BUKU TAMU ================= -->
-        <section id="rsvp" class="py-20 px-6 relative reveal">
-            <div class="max-w-3xl mx-auto text-center">
+        <section id="rsvp" class="py-20 px-6 relative reveal overflow-hidden">
+            <!-- Watermark Gunungan -->
+            <svg class="gunungan-watermark text-wood" viewBox="0 0 100 100" fill="currentColor">
+                <path d="M50 5 C30 20 10 40 10 70 L25 70 L25 95 L75 95 L75 70 L90 70 C90 40 70 20 50 5 Z" />
+            </svg>
+
+            <div class="max-w-3xl mx-auto text-center relative z-10">
                 <p class="font-playfair italic text-gold text-lg mb-2 uppercase tracking-widest">Kirim Doa Restu</p>
                 <h2 class="font-playfair text-4xl md:text-6xl font-bold mb-12 text-wood">Buku Tamu</h2>
 
                 <div class="grid md:grid-cols-2 gap-8 text-left">
                     <!-- Form -->
-                    <form id="rsvpForm" class="space-y-5 bg-cream p-8 border-2 border-gold rounded-lg shadow-lg batik-pattern">
-                        <div>
+                    <form id="rsvpForm" class="space-y-5 ornate-frame batik-pattern">
+                        <svg class="corner-decor corner-tl text-gold" viewBox="0 0 100 100" fill="currentColor"><path d="M0,0 L50,0 C50,25 25,50 0,50 Z M10,10 L35,10 C35,25 25,35 10,35 Z" opacity="0.9"/></svg>
+                        <svg class="corner-decor corner-tr text-gold" viewBox="0 0 100 100" fill="currentColor"><path d="M0,0 L50,0 C50,25 25,50 0,50 Z M10,10 L35,10 C35,25 25,35 10,35 Z" opacity="0.9"/></svg>
+                        <svg class="corner-decor corner-bl text-gold" viewBox="0 0 100 100" fill="currentColor"><path d="M0,0 L50,0 C50,25 25,50 0,50 Z M10,10 L35,10 C35,25 25,35 10,35 Z" opacity="0.9"/></svg>
+                        <svg class="corner-decor corner-br text-gold" viewBox="0 0 100 100" fill="currentColor"><path d="M0,0 L50,0 C50,25 25,50 0,50 Z M10,10 L35,10 C35,25 25,35 10,35 Z" opacity="0.9"/></svg>
+
+                        <div class="mt-2">
                             <label class="block text-sm font-medium text-wood mb-2">Nama</label>
                             <input type="text" id="nama" required class="w-full px-4 py-3 bg-ivory/80 border-2 border-gold/30 rounded focus:outline-none focus:border-gold transition-colors" placeholder="Tulis nama anda">
                         </div>
@@ -365,9 +443,14 @@
                     </form>
 
                     <!-- Feed Ucapan -->
-                    <div class="bg-cream border-2 border-gold rounded-lg p-6 flex flex-col shadow-lg">
+                    <div class="ornate-frame flex flex-col">
+                        <svg class="corner-decor corner-tl text-gold" viewBox="0 0 100 100" fill="currentColor"><path d="M0,0 L50,0 C50,25 25,50 0,50 Z M10,10 L35,10 C35,25 25,35 10,35 Z" opacity="0.9"/></svg>
+                        <svg class="corner-decor corner-tr text-gold" viewBox="0 0 100 100" fill="currentColor"><path d="M0,0 L50,0 C50,25 25,50 0,50 Z M10,10 L35,10 C35,25 25,35 10,35 Z" opacity="0.9"/></svg>
+                        <svg class="corner-decor corner-bl text-gold" viewBox="0 0 100 100" fill="currentColor"><path d="M0,0 L50,0 C50,25 25,50 0,50 Z M10,10 L35,10 C35,25 25,35 10,35 Z" opacity="0.9"/></svg>
+                        <svg class="corner-decor corner-br text-gold" viewBox="0 0 100 100" fill="currentColor"><path d="M0,0 L50,0 C50,25 25,50 0,50 Z M10,10 L35,10 C35,25 25,35 10,35 Z" opacity="0.9"/></svg>
+
                         <h3 class="font-playfair text-2xl text-center mb-4 border-b-2 border-gold/30 pb-2 text-wood">Ucapan Tamu</h3>
-                        <div id="guestbookFeed" class="custom-scroll space-y-4 overflow-y-auto h-[350px] pr-2">
+                        <div id="guestbookFeed" class="custom-scroll space-y-4 overflow-y-auto h-[300px] pr-2">
                             <!-- Dummy Content -->
                             <div class="bg-ivory p-4 rounded shadow-sm border-l-4 border-gold">
                                 <p class="font-semibold text-wood text-lg">Budi Santoso</p>
@@ -386,14 +469,15 @@
         </section>
 
         <!-- ================= 7. FOOTER ================= -->
-        <footer class="py-16 px-6 text-center relative wood-texture text-ivory">
+        <footer class="py-16 px-6 text-center relative wood-texture text-ivory overflow-hidden">
             <!-- Pola batik di atas footer -->
             <div class="absolute top-0 left-0 right-0 h-2 bg-gold"></div>
             
-            <div class="max-w-md mx-auto">
-                <!-- Wayang Ornamen -->
-                <svg class="w-20 h-20 mx-auto mb-6 text-gold" viewBox="0 0 100 100" fill="currentColor">
+            <div class="max-w-md mx-auto relative z-10">
+                <!-- Wayang Ornamen Besar -->
+                <svg class="w-24 h-24 mx-auto mb-6 text-gold" viewBox="0 0 100 100" fill="currentColor">
                     <path d="M50 5 C35 15 15 35 15 65 L30 65 L30 95 L70 95 L70 65 L85 65 C85 35 65 15 50 5 Z M50 25 C58 35 68 45 68 60 L32 60 C32 45 42 35 50 25 Z" />
+                    <path d="M50 35 L55 45 L50 55 L45 45 Z" fill="#5C2811" opacity="0.3"/>
                 </svg>
                 
                 <h2 class="font-playfair text-4xl mb-4 text-gold">Matur Nuwun</h2>
@@ -517,7 +601,7 @@
                     data.forEach(item => {
                         const newComment = document.createElement('div');
                         newComment.className = 'bg-ivory p-4 rounded shadow-sm border-l-4 border-gold';
-                        // Item[1] = Nama, Item[2] = Kehadiran, Item[3] = Ucapan
+                        // Item[1] = Nama, Item[2] = Kehhadiran, Item[3] = Ucapan
                         newComment.innerHTML = `
                             <p class="font-semibold text-wood text-lg">${item[1]}</p>
                             <p class="text-xs text-gold mb-2 uppercase tracking-wider">${item[2]}</p>
