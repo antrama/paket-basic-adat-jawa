@@ -131,54 +131,57 @@
 <body class="batik-pattern text-wood overflow-x-hidden">
 
     <!-- ================= 1. COVER SECTION ================= -->
-    <section id="cover" class="fixed inset-0 z-50 flex items-center justify-center wood-texture no-scroll transition-opacity duration-1000">
+    <section id="cover" class="fixed inset-0 z-50 flex items-center justify-center wood-texture overflow-hidden transition-opacity duration-1000">
         
         <!-- Bingkai Ukiran Luar Cover -->
-        <div class="absolute inset-4 md:inset-8 border-2 border-gold/80 flex flex-col items-center justify-center text-center p-6 relative z-10">
+        <div class="relative w-[calc(100%-2rem)] h-[calc(100%-2rem)] md:w-[calc(100%-4rem)] md:h-[calc(100%-4rem)] border-2 border-gold/80 flex flex-col items-center justify-center text-center p-4 md:p-6 overflow-hidden z-10">
             
-            <!-- Ornamen Sudut Ukiran Besar -->
-            <svg class="absolute top-0 left-0 w-24 h-24 text-gold" viewBox="0 0 100 100" fill="currentColor">
+            <!-- Ornamen Sudut Ukiran Besar (Responsif) -->
+            <svg class="absolute top-0 left-0 w-16 h-16 md:w-24 md:h-24 text-gold" viewBox="0 0 100 100" fill="currentColor">
                 <path d="M0 0 L50 0 C50 25 25 50 0 50 Z M10 10 L35 10 C35 25 25 35 10 35 Z" opacity="0.9"/>
                 <path d="M0 0 L20 0 L0 20 Z" opacity="0.5"/>
             </svg>
-            <svg class="absolute top-0 right-0 w-24 h-24 text-gold transform rotate-90" viewBox="0 0 100 100" fill="currentColor">
+            <svg class="absolute top-0 right-0 w-16 h-16 md:w-24 md:h-24 text-gold transform rotate-90" viewBox="0 0 100 100" fill="currentColor">
                 <path d="M0 0 L50 0 C50 25 25 50 0 50 Z M10 10 L35 10 C35 25 25 35 10 35 Z" opacity="0.9"/>
             </svg>
-            <svg class="absolute bottom-0 left-0 w-24 h-24 text-gold transform -rotate-90" viewBox="0 0 100 100" fill="currentColor">
+            <svg class="absolute bottom-0 left-0 w-16 h-16 md:w-24 md:h-24 text-gold transform -rotate-90" viewBox="0 0 100 100" fill="currentColor">
                 <path d="M0 0 L50 0 C50 25 25 50 0 50 Z M10 10 L35 10 C35 25 25 35 10 35 Z" opacity="0.9"/>
             </svg>
-            <svg class="absolute bottom-0 right-0 w-24 h-24 text-gold transform rotate-180" viewBox="0 0 100 100" fill="currentColor">
+            <svg class="absolute bottom-0 right-0 w-16 h-16 md:w-24 md:h-24 text-gold transform rotate-180" viewBox="0 0 100 100" fill="currentColor">
                 <path d="M0 0 L50 0 C50 25 25 50 0 50 Z M10 10 L35 10 C35 25 25 35 10 35 Z" opacity="0.9"/>
             </svg>
 
-            <!-- Ornamen Gunungan Atas -->
-            <div class="mb-6 wayang-shadow relative">
-                <svg class="w-28 h-28 text-gold" viewBox="0 0 100 100" fill="currentColor">
-                    <path d="M50 5 C30 20 10 40 10 70 L25 70 L25 95 L75 95 L75 70 L90 70 C90 40 70 20 50 5 Z M50 25 C60 35 70 50 70 65 L30 65 C30 50 40 35 50 25 Z" />
-                    <path d="M50 35 L55 45 L50 55 L45 45 Z" fill="#5C2811" opacity="0.3"/>
-                </svg>
-            </div>
+            <!-- Konten Tengah (Dibungkus agar flexbox tidak pecah) -->
+            <div class="relative z-10 flex flex-col items-center justify-center w-full px-2">
+                <!-- Ornamen Gunungan Atas -->
+                <div class="mb-4 md:mb-6 wayang-shadow">
+                    <svg class="w-20 h-20 md:w-28 md:h-28 text-gold" viewBox="0 0 100 100" fill="currentColor">
+                        <path d="M50 5 C30 20 10 40 10 70 L25 70 L25 95 L75 95 L75 70 L90 70 C90 40 70 20 50 5 Z M50 25 C60 35 70 50 70 65 L30 65 C30 50 40 35 50 25 Z" />
+                        <path d="M50 35 L55 45 L50 55 L45 45 Z" fill="#5C2811" opacity="0.3"/>
+                    </svg>
+                </div>
 
-            <p class="font-playfair italic text-gold text-lg md:text-xl tracking-[0.3em] uppercase relative z-10">Walimatul 'Ursy</p>
-            <h1 class="font-playfair text-ivory text-5xl md:text-7xl font-bold my-6 drop-shadow-lg relative z-10">Sugeng Rawuh</h1>
-            
-            <!-- Pembatas Etnik Cover -->
-            <div class="flex items-center justify-center gap-4 my-4 relative z-10">
-                <div class="w-16 h-px bg-gold"></div>
-                <i class="fas fa-leaf text-gold text-sm"></i>
-                <div class="w-16 h-px bg-gold"></div>
-            </div>
+                <p class="font-playfair italic text-gold text-sm md:text-xl tracking-[0.2em] md:tracking-[0.3em] uppercase">Walimatul 'Ursy</p>
+                <h1 class="font-playfair text-ivory text-4xl md:text-7xl font-bold my-4 md:my-6 drop-shadow-lg">Sugeng Rawuh</h1>
+                
+                <!-- Pembatas Etnik Cover -->
+                <div class="flex items-center justify-center gap-3 md:gap-4 my-3 md:my-4">
+                    <div class="w-12 md:w-16 h-px bg-gold"></div>
+                    <i class="fas fa-leaf text-gold text-xs md:text-sm"></i>
+                    <div class="w-12 md:w-16 h-px bg-gold"></div>
+                </div>
 
-            <p class="text-ivory/80 text-sm md:text-base font-light tracking-wider mb-8 relative z-10">Kepada Yth. Bapak/Ibu/Saudara/i</p>
-            
-            <div class="mb-8 relative z-10">
-                <h2 class="font-playfair text-ivory text-4xl md:text-6xl">Bramantyo <span class="text-gold font-light italic">&</span> Sekartaji</h2>
-            </div>
+                <p class="text-ivory/80 text-xs md:text-base font-light tracking-wider mb-6 md:mb-8 px-2">Kepada Yth. Bapak/Ibu/Saudara/i</p>
+                
+                <div class="mb-6 md:mb-8 w-full">
+                    <h2 class="font-playfair text-ivory text-3xl md:text-6xl leading-tight">Bramantyo <span class="text-gold font-light italic">&</span> Sekartaji</h2>
+                </div>
 
-            <button id="openInvitationBtn" class="bg-gold text-wood px-10 py-4 rounded-full font-semibold hover:bg-ivory transition-all duration-300 shadow-2xl flex items-center gap-3 group border-2 border-ivory/20 relative z-10">
-                <i class="fas fa-envelope-open-text group-hover:scale-110 transition-transform"></i>
-                Buka Undangan
-            </button>
+                <button id="openInvitationBtn" class="bg-gold text-wood px-8 md:px-10 py-3 md:py-4 rounded-full font-semibold hover:bg-ivory transition-all duration-300 shadow-2xl flex items-center gap-3 group border-2 border-ivory/20 text-sm md:text-base">
+                    <i class="fas fa-envelope-open-text group-hover:scale-110 transition-transform"></i>
+                    Buka Undangan
+                </button>
+            </div>
         </div>
     </section>
 
