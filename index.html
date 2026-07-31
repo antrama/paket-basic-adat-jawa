@@ -752,7 +752,7 @@
    KONFIGURASI
    ============================================================ */
 const scriptURL = 'https://script.google.com/macros/s/AKfycbzsFTJJDTA6zi_4ZKQjmlqGY4hWYJBxG-8Q0kfcqWCkCc41NRWsAPyU7L_XMJM7FYH-9w/exec';
-const weddingDate = new Date('2025-12-20T08:00:00').getTime();
+const weddingDate = new Date('2026-12-20T08:00:00').getTime();
 
 /* ============================================================
    DOM ELEMENTS
@@ -922,10 +922,10 @@ rsvpForm.addEventListener('submit', async (e) => {
 });
 
 /* ============================================================
-   LOAD MESSAGES (GET from Google Sheets)
+   LOAD MESSAGES (GET from Google Sheets via JSONP to bypass CORS)
    ============================================================ */
-async function loadMessages() {
-  if (scriptURL === 'https://script.google.com/macros/s/AKfycbzsFTJJDTA6zi_4ZKQjmlqGY4hWYJBxG-8Q0kfcqWCkCc41NRWsAPyU7L_XMJM7FYH-9w/exec') {
+function loadMessages() {
+  if (scriptURL === 'YOUR_GOOGLE_SCRIPT_URL_HERE') {
     guestBook.innerHTML = `
       <div class="text-center py-8 px-4">
         <i class="fas fa-exclamation-triangle text-2xl text-amber-500/60 mb-3"></i>
@@ -939,6 +939,7 @@ async function loadMessages() {
     return;
   }
 
+  // Tampilkan loading
   guestBook.innerHTML = `
     <div class="text-center py-8">
       <div class="spinner" style="border-color: rgba(201,162,39,0.3); border-top-color: var(--gold); margin: 0 auto;"></div>
@@ -946,9 +947,16 @@ async function loadMessages() {
     </div>
   `;
 
-  try {
-    const response = await fetch(`${scriptURL}?action=get&t=${Date.now()}`);
-    const data = await response.json();
+  // Hapus script JSONP sebelumnya jika ada
+  const oldScript = document.getElementById('jsonpScript');
+  if (oldScript) oldScript.remove();
+
+  // Buat fungsi callback sementara
+  window.handleGuestMessages = function(data) {
+    // Hapus script setelah dipanggil
+    const scriptEl = document.getElementById('jsonpScript');
+    if (scriptEl) scriptEl.remove();
+    delete window.handleGuestMessages;
 
     if (!Array.isArray(data) || data.length === 0) {
       guestBook.innerHTML = `
@@ -994,20 +1002,31 @@ async function loadMessages() {
     }).join('');
 
     document.getElementById('msgCount').textContent = data.length;
+  };
 
-  } catch (error) {
-    console.error('Load messages error:', error);
+  // Inject tag script untuk fetch data (JSONP)
+  const script = document.createElement('script');
+  script.id = 'jsonpScript';
+  // Parameter callback dikirim ke Google Script
+  script.src = `${scriptURL}?action=get&t=${Date.now()}&callback=handleGuestMessages`;
+  
+  // Fallback jika gagal load total
+  script.onerror = function() {
+    script.remove();
+    delete window.handleGuestMessages;
     guestBook.innerHTML = `
       <div class="text-center py-8">
         <i class="fas fa-wifi text-2xl text-red-400/60 mb-3"></i>
-        <p class="text-xs text-amber-100/60 mb-3">Gagal memuat ucapan.</p>
+        <p class="text-xs text-amber-100/60 mb-3">Gagal memuat ucapan. Cek koneksi atau URL Script.</p>
         <button onclick="loadMessages()" class="btn-outline-gold text-xs">
           <i class="fas fa-rotate-right"></i> Coba Lagi
         </button>
       </div>
     `;
     document.getElementById('msgCount').textContent = '0';
-  }
+  };
+
+  document.body.appendChild(script);
 }
 
 /* ============================================================
