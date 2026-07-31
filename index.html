@@ -35,12 +35,8 @@
 
   body {
     font-family: 'Plus Jakarta Sans', sans-serif;
-    background-color: #1a0f08;
-    background-image: url('background.png');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    color: var(--brown);
+    background-color: #0a0604; /* Warna gelap di luar wrapper (layar PC) */
+    color: var(--cream);
     overflow-x: hidden;
   }
 
@@ -56,17 +52,36 @@
     max-width: 480px;
     margin: 0 auto;
     position: relative;
-    background: rgba(250, 246, 235, 0.55);
-    backdrop-filter: blur(3px);
-    -webkit-backdrop-filter: blur(3px);
+    background-image: url('background.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: scroll; 
     min-height: 100vh;
     box-shadow: 0 0 80px rgba(0, 0, 0, 0.5);
     overflow: hidden;
   }
 
-  /* Solid Section (Untuk Quote & Countdown agar teks sangat jelas) */
+  /* Overlay Coklat Tua (Dark Brown Frosted Glass) */
+  .invitation-wrapper::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(20, 10, 5, 0.78); /* Coklat tua transparan */
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  /* Memastikan semua konten berada di atas overlay */
+  .invitation-wrapper > * {
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Solid Section (Untuk Quote & Countdown) */
   .bg-solid-section {
-    background-color: rgba(250, 246, 235, 0.92); /* Sangat solid */
+    background-color: rgba(15, 8, 4, 0.95); /* Coklat tua sangat solid */
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     padding: 3rem 1.5rem;
@@ -93,7 +108,6 @@
     z-index: 100;
     max-width: 480px;
     margin: 0 auto;
-    /* Overlay gelap diperkuat agar mega mendung menjadi samar/transparan */
     background-image: 
       linear-gradient(180deg, rgba(26, 15, 8, 0.92) 0%, rgba(60, 25, 15, 0.88) 50%, rgba(26, 15, 8, 0.95) 100%),
       url('megamendung.png');
@@ -113,19 +127,19 @@
     pointer-events: none;
   }
 
-  /* Card Style (Frosted Glass Transparan) */
+  /* Card Style (Coklat Tua Transparan) */
   .card-javanese {
     position: relative;
-    background: rgba(255, 251, 240, 0.6); /* Transparan */
+    background: rgba(40, 25, 15, 0.75); /* Coklat tua transparan */
     border: 1px solid rgba(201, 162, 39, 0.35);
-    box-shadow: 0 4px 30px rgba(61, 40, 23, 0.12);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
     border-radius: 4px;
   }
 
   /* Gold Text */
-  .gold-text { color: var(--gold-dark); }
+  .gold-text { color: var(--gold-light); }
   .gold-gradient-text {
     background: linear-gradient(135deg, #E5C76B 0%, #C9A227 35%, #ffffff 50%, #C9A227 65%, #E5C76B 100%);
     -webkit-background-clip: text;
@@ -223,59 +237,61 @@
     opacity: 0.6;
   }
 
-  /* Dividers (No Repeat & Besar) */
+  /* Dividers (Ukuran Besar & Full Width) */
   .batik-divider {
-    height: 70px;
+    height: 100px; 
     background-image: url('batikgaris.png');
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
     width: 100%;
-    max-width: 280px;
-    margin: 1.5rem auto;
+    margin: 2rem auto; 
     opacity: 0.8;
   }
   .garis-divider {
-    height: 35px;
+    height: 60px; 
     background-image: url('garis.png');
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
     width: 100%;
-    max-width: 180px;
-    margin: 0.5rem auto;
+    margin: 1rem auto;
   }
 
   /* Form */
   .form-input {
     width: 100%;
     padding: 12px 16px;
-    background: rgba(255, 251, 240, 0.8);
+    background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(201, 162, 39, 0.4);
     border-radius: 8px;
     font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 14px;
-    color: var(--brown);
+    color: var(--cream);
     transition: all 0.3s;
   }
   .form-input:focus {
     outline: none;
     border-color: var(--gold);
     box-shadow: 0 0 0 3px rgba(201, 162, 39, 0.15);
-    background: rgba(255, 251, 240, 1);
+    background: rgba(255, 255, 255, 0.08);
   }
-  .form-input::placeholder { color: rgba(107, 68, 35, 0.4); }
+  .form-input::placeholder { color: rgba(245, 239, 224, 0.4); }
+  .form-input option {
+    background-color: #2a1810;
+    color: var(--cream);
+  }
 
   /* Buttons */
   .btn-gold {
-    background: linear-gradient(135deg, #C9A227 0%, #8B6F1E 100%);
-    color: white;
+    background: linear-gradient(135deg, #E5C76B 0%, #C9A227 100%);
+    color: #3D2817; /* Teks coklat tua pada tombol emas */
     padding: 14px 36px;
     border-radius: 9999px;
-    font-weight: 600;
+    font-weight: 700;
     letter-spacing: 1px;
     transition: all 0.3s;
-    box-shadow: 0 4px 20px rgba(139, 111, 30, 0.35);
+    box-shadow: 0 4px 20px rgba(201, 162, 39, 0.4);
     cursor: pointer;
     border: none;
     font-size: 14px;
@@ -283,17 +299,17 @@
   }
   .btn-gold:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(139, 111, 30, 0.45);
+    box-shadow: 0 8px 25px rgba(201, 162, 39, 0.5);
   }
   .btn-gold:active { transform: translateY(0); }
 
   .btn-outline-gold {
     background: transparent;
-    color: var(--gold-dark);
+    color: var(--gold-light);
     padding: 10px 28px;
     border-radius: 9999px;
     font-weight: 600;
-    border: 1.5px solid var(--gold);
+    border: 1.5px solid var(--gold-light);
     transition: all 0.3s;
     cursor: pointer;
     font-size: 13px;
@@ -302,8 +318,8 @@
     gap: 8px;
   }
   .btn-outline-gold:hover {
-    background: var(--gold);
-    color: white;
+    background: var(--gold-light);
+    color: #3D2817;
   }
 
   /* Guest Book */
@@ -329,33 +345,33 @@
     display: inline-block;
   }
 
-  /* Map Container */
+  /* Map Container (Mode Gelap) */
   .map-container {
     width: 100%;
     height: 200px;
     border-radius: 8px;
     overflow: hidden;
     border: 1px solid rgba(201, 162, 39, 0.4);
-    box-shadow: 0 4px 15px rgba(61, 40, 23, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     margin-top: 1rem;
   }
   .map-container iframe {
     width: 100%;
     height: 100%;
     border: 0;
-    filter: sepia(30%) saturate(120%);
+    filter: invert(90%) hue-rotate(180deg) brightness(0.9) contrast(1.2); /* Dark Mode Maps */
   }
 
   /* Countdown */
   .countdown-box {
-    background: rgba(255, 251, 240, 0.7);
+    background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(201, 162, 39, 0.4);
     border-radius: 10px;
     padding: 14px 8px;
     text-align: center;
     min-width: 70px;
     backdrop-filter: blur(4px);
-    box-shadow: 0 4px 15px rgba(61, 40, 23, 0.08);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   }
 
   /* Section Title */
@@ -363,7 +379,7 @@
     font-family: 'Cinzel', serif;
     font-size: 11px;
     letter-spacing: 0.35em;
-    color: var(--gold-dark);
+    color: var(--gold-light);
     text-transform: uppercase;
     opacity: 0.8;
   }
@@ -446,8 +462,7 @@
     <p class="font-cinzel text-2xl text-amber-300/60 mb-1">&amp;</p>
     <h1 class="font-playfair text-5xl font-bold gold-gradient-text leading-tight mb-4">Dewi</h1>
 
-    <!-- Hanya 1 Batik Divider di Cover -->
-    <div class="batik-divider mb-4" style="height: 50px; max-width: 180px; margin: 0 auto 1rem;"></div>
+    <div class="batik-divider mb-4" style="height: 80px; margin: 0 auto 1.5rem;"></div>
 
     <div class="date-badge mb-6">
       <p class="font-cinzel text-xs tracking-[0.2em] text-amber-100/90">SABTU, 20 DESEMBER 2025</p>
@@ -466,24 +481,24 @@
 <!-- ==================== MAIN INVITATION ==================== -->
 <main id="mainContent" class="invitation-wrapper" style="display:none;">
 
-  <!-- ========== QUOTE SECTION (Solid Background) ========== -->
+  <!-- ========== QUOTE SECTION (Solid Dark Brown) ========== -->
   <section id="quoteSection" class="reveal bg-solid-section text-center">
-    <i class="fas fa-quote-right text-3xl text-amber-600/40 mb-4"></i>
+    <i class="fas fa-quote-right text-3xl text-amber-300/40 mb-4"></i>
 
-    <p class="font-playfair text-lg leading-relaxed text-amber-900/90 mb-4" dir="rtl" lang="ar" style="line-height: 2;">
+    <p class="font-playfair text-lg leading-relaxed text-amber-50/90 mb-4" dir="rtl" lang="ar" style="line-height: 2;">
       وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً ۚ إِنَّ فِي ذَٰلِكَ لَآيَاتٍ لِّقَوْمٍ يَتَفَكَّرُونَ
     </p>
 
     <div class="garis-divider my-4"></div>
 
-    <p class="text-sm leading-relaxed text-amber-800/80 italic mb-2">
+    <p class="text-sm leading-relaxed text-amber-100/80 italic mb-2">
       "Dan di antara tanda-tanda kekuasaan-Nya diciptakan-Nya untukmu pasangan hidup dari jenismu sendiri, supaya kamu cenderung dan merasa tenteram kepadanya, dan dijadikan-Nya di antaramu rasa kasih dan sayang. Sesungguhnya pada yang demikian itu benar-benar terdapat tanda-tanda bagi kaum yang berpikir."
     </p>
 
-    <p class="font-cinzel text-xs tracking-[0.2em] text-amber-700 mt-3">QS. AR-RUM : 21</p>
+    <p class="font-cinzel text-xs tracking-[0.2em] text-amber-300 mt-3">QS. AR-RUM : 21</p>
   </section>
 
-  <!-- ========== PROFILE MEMPELAI (Card Transparent) ========== -->
+  <!-- ========== PROFILE MEMPELAI (Card Transparent Dark) ========== -->
   <section class="reveal px-4 py-12">
     <div class="card-javanese p-6 relative">
       <img src="bingkai.png" class="corner-frame corner-tl" alt="" onerror="this.style.display='none'">
@@ -500,14 +515,14 @@
       <!-- Mempelai Pria -->
       <div class="text-center mb-2">
         <div class="profile-icon mb-3">
-          <i class="fas fa-user-tie text-2xl text-amber-700"></i>
+          <i class="fas fa-user-tie text-2xl text-amber-300"></i>
         </div>
-        <p class="font-cinzel text-xs tracking-[0.2em] text-amber-700/70 mb-1">MEMPELAI PRIA</p>
+        <p class="font-cinzel text-xs tracking-[0.2em] text-amber-200/70 mb-1">MEMPELAI PRIA</p>
         <h3 class="font-playfair text-2xl font-bold gold-text mb-2">Susilo Budi Pratama, S.T.</h3>
-        <p class="text-xs text-amber-800/60 mb-1">Putra Pertama dari</p>
-        <p class="text-sm font-semibold text-amber-900">Bapak Sugeng Hartono</p>
-        <p class="text-xs text-amber-800/60">&amp;</p>
-        <p class="text-sm font-semibold text-amber-900">Ibu Sri Wahyuni</p>
+        <p class="text-xs text-amber-100/60 mb-1">Putra Pertama dari</p>
+        <p class="text-sm font-semibold text-amber-50">Bapak Sugeng Hartono</p>
+        <p class="text-xs text-amber-100/60">&amp;</p>
+        <p class="text-sm font-semibold text-amber-50">Ibu Sri Wahyuni</p>
       </div>
 
       <!-- Divider with & -->
@@ -517,22 +532,22 @@
         <div class="line-inline"></div>
       </div>
 
-      <!-- Mempelai Wanita -->
+      <!-- Mempelai Wanita (Ikon Diubah) -->
       <div class="text-center">
         <div class="profile-icon mb-3">
-          <i class="fas fa-user-female text-2xl text-amber-700"></i>
+          <i class="fas fa-person-dress text-2xl text-amber-300"></i>
         </div>
-        <p class="font-cinzel text-xs tracking-[0.2em] text-amber-700/70 mb-1">MEMPELAI WANITA</p>
+        <p class="font-cinzel text-xs tracking-[0.2em] text-amber-200/70 mb-1">MEMPELAI WANITA</p>
         <h3 class="font-playfair text-2xl font-bold gold-text mb-2">Dewi Ayu Lestari, S.K.M.</h3>
-        <p class="text-xs text-amber-800/60 mb-1">Putri Kedua dari</p>
-        <p class="text-sm font-semibold text-amber-900">Bapak Bambang Sutrisno</p>
-        <p class="text-xs text-amber-800/60">&amp;</p>
-        <p class="text-sm font-semibold text-amber-900">Ibu Endang Susilowati</p>
+        <p class="text-xs text-amber-100/60 mb-1">Putri Kedua dari</p>
+        <p class="text-sm font-semibold text-amber-50">Bapak Bambang Sutrisno</p>
+        <p class="text-xs text-amber-100/60">&amp;</p>
+        <p class="text-sm font-semibold text-amber-50">Ibu Endang Susilowati</p>
       </div>
     </div>
   </section>
 
-  <!-- ========== DETAIL ACARA & MAPS (Card Transparent) ========== -->
+  <!-- ========== DETAIL ACARA & MAPS (Card Transparent Dark) ========== -->
   <section class="reveal px-4 pb-12">
     <div class="card-javanese p-6 relative">
       <img src="bingkai.png" class="corner-frame corner-tl" alt="" onerror="this.style.display='none'">
@@ -547,38 +562,38 @@
       </div>
 
       <!-- Akad Nikah -->
-      <div class="text-center mb-6 p-4 bg-amber-50/40 rounded-lg border border-amber-200/40">
-        <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-amber-100/60 border border-amber-400/40 mb-3">
-          <i class="fas fa-ring text-xl text-amber-700"></i>
+      <div class="text-center mb-6 p-4 bg-white/5 rounded-lg border border-amber-300/20">
+        <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-amber-300/10 border border-amber-300/30 mb-3">
+          <i class="fas fa-ring text-xl text-amber-300"></i>
         </div>
-        <p class="font-cinzel text-xs tracking-[0.25em] text-amber-700 mb-1">AKAD NIKAH</p>
-        <h3 class="font-playfair text-lg font-bold text-amber-900 mb-2">Sabtu, 20 Desember 2025</h3>
-        <p class="text-sm text-amber-800/80 mb-1">
-          <i class="far fa-clock text-amber-600 mr-1"></i> 08.00 — 10.00 WIB
+        <p class="font-cinzel text-xs tracking-[0.25em] text-amber-200 mb-1">AKAD NIKAH</p>
+        <h3 class="font-playfair text-lg font-bold text-amber-50 mb-2">Sabtu, 20 Desember 2025</h3>
+        <p class="text-sm text-amber-100/80 mb-1">
+          <i class="far fa-clock text-amber-300 mr-1"></i> 08.00 — 10.00 WIB
         </p>
-        <p class="text-sm text-amber-800/80 mb-3">
-          <i class="fas fa-location-dot text-amber-600 mr-1"></i> Masjid Agung Jami' Malang
+        <p class="text-sm text-amber-100/80 mb-3">
+          <i class="fas fa-location-dot text-amber-300 mr-1"></i> Masjid Agung Jami' Malang
         </p>
-        <p class="text-xs text-amber-700/60 italic">Jl. Alun-Alun Timur No.1, Kiduldalem, Kec. Klojen, Kota Malang</p>
+        <p class="text-xs text-amber-200/60 italic">Jl. Alun-Alun Timur No.1, Kiduldalem, Kec. Klojen, Kota Malang</p>
       </div>
 
       <!-- Resepsi -->
-      <div class="text-center mb-2 p-4 bg-amber-50/40 rounded-lg border border-amber-200/40">
-        <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-amber-100/60 border border-amber-400/40 mb-3">
-          <i class="fas fa-utensils text-xl text-amber-700"></i>
+      <div class="text-center mb-2 p-4 bg-white/5 rounded-lg border border-amber-300/20">
+        <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-amber-300/10 border border-amber-300/30 mb-3">
+          <i class="fas fa-utensils text-xl text-amber-300"></i>
         </div>
-        <p class="font-cinzel text-xs tracking-[0.25em] text-amber-700 mb-1">RESEPSI</p>
-        <h3 class="font-playfair text-lg font-bold text-amber-900 mb-2">Sabtu, 20 Desember 2025</h3>
-        <p class="text-sm text-amber-800/80 mb-1">
-          <i class="far fa-clock text-amber-600 mr-1"></i> 11.00 — 14.00 WIB
+        <p class="font-cinzel text-xs tracking-[0.25em] text-amber-200 mb-1">RESEPSI</p>
+        <h3 class="font-playfair text-lg font-bold text-amber-50 mb-2">Sabtu, 20 Desember 2025</h3>
+        <p class="text-sm text-amber-100/80 mb-1">
+          <i class="far fa-clock text-amber-300 mr-1"></i> 11.00 — 14.00 WIB
         </p>
-        <p class="text-sm text-amber-800/80 mb-3">
-          <i class="fas fa-location-dot text-amber-600 mr-1"></i> Ballroom Hotel Tugu Malang
+        <p class="text-sm text-amber-100/80 mb-3">
+          <i class="fas fa-location-dot text-amber-300 mr-1"></i> Ballroom Hotel Tugu Malang
         </p>
-        <p class="text-xs text-amber-700/60 italic">Jl. Tugu No.3, Kartoharjo, Kec. Klojen, Kota Malang</p>
+        <p class="text-xs text-amber-200/60 italic">Jl. Tugu No.3, Kartoharjo, Kec. Klojen, Kota Malang</p>
       </div>
 
-      <!-- Google Maps Embed -->
+      <!-- Google Maps Embed (Dark Mode Filter) -->
       <div class="map-container mt-4">
         <iframe 
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3951.4726191282337!2d112.623804874009!3d-7.978416180703422!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd6285c0e4b1f7f%3A0xe0c6f6d6f6f6f6f6!2sHotel%20Tugu%20Malang!5e0!3m2!1sen!2sid!4v1678888888888" 
@@ -596,34 +611,34 @@
     </div>
   </section>
 
-  <!-- ========== COUNTDOWN (Solid Background) ========== -->
+  <!-- ========== COUNTDOWN (Solid Dark Brown) ========== -->
   <section class="reveal bg-solid-section text-center">
     <p class="section-eyebrow mb-2">Wanci Tunggu</p>
     <h2 class="font-playfair text-2xl font-bold gold-text">Hitung Mundur</h2>
     <div class="garis-divider mt-3"></div>
-    <p class="text-xs text-amber-800/60 italic mb-6">Menuju Hari Bahagia</p>
+    <p class="text-xs text-amber-100/60 italic mb-6">Menuju Hari Bahagia</p>
 
     <div class="grid grid-cols-4 gap-2" id="countdown">
       <div class="countdown-box">
         <p class="font-playfair text-2xl font-bold gold-gradient-text" id="cdDays">0</p>
-        <p class="font-cinzel text-[10px] tracking-[0.15em] text-amber-700/70 mt-1">HARI</p>
+        <p class="font-cinzel text-[10px] tracking-[0.15em] text-amber-200/70 mt-1">HARI</p>
       </div>
       <div class="countdown-box">
         <p class="font-playfair text-2xl font-bold gold-gradient-text" id="cdHours">0</p>
-        <p class="font-cinzel text-[10px] tracking-[0.15em] text-amber-700/70 mt-1">JAM</p>
+        <p class="font-cinzel text-[10px] tracking-[0.15em] text-amber-200/70 mt-1">JAM</p>
       </div>
       <div class="countdown-box">
         <p class="font-playfair text-2xl font-bold gold-gradient-text" id="cdMinutes">0</p>
-        <p class="font-cinzel text-[10px] tracking-[0.15em] text-amber-700/70 mt-1">MENIT</p>
+        <p class="font-cinzel text-[10px] tracking-[0.15em] text-amber-200/70 mt-1">MENIT</p>
       </div>
       <div class="countdown-box">
         <p class="font-playfair text-2xl font-bold gold-gradient-text" id="cdSeconds">0</p>
-        <p class="font-cinzel text-[10px] tracking-[0.15em] text-amber-700/70 mt-1">DETIK</p>
+        <p class="font-cinzel text-[10px] tracking-[0.15em] text-amber-200/70 mt-1">DETIK</p>
       </div>
     </div>
   </section>
 
-  <!-- ========== RSVP & BUKU TAMU (Card Transparent) ========== -->
+  <!-- ========== RSVP & BUKU TAMU (Card Transparent Dark) ========== -->
   <section class="reveal px-4 py-12">
     <div class="card-javanese p-6 relative">
       <img src="bingkai.png" class="corner-frame corner-tl" alt="" onerror="this.style.display='none'">
@@ -640,12 +655,12 @@
       <!-- Form -->
       <form id="rsvpForm" class="space-y-4 mb-6">
         <div>
-          <label class="block text-xs font-semibold text-amber-800 mb-1.5">Nama Lengkap <span class="text-red-500">*</span></label>
+          <label class="block text-xs font-semibold text-amber-100 mb-1.5">Nama Lengkap <span class="text-red-400">*</span></label>
           <input type="text" id="nama" name="nama" class="form-input" placeholder="Tulis nama anda..." required>
         </div>
 
         <div>
-          <label class="block text-xs font-semibold text-amber-800 mb-1.5">Konfirmasi Kehadiran <span class="text-red-500">*</span></label>
+          <label class="block text-xs font-semibold text-amber-100 mb-1.5">Konfirmasi Kehadiran <span class="text-red-400">*</span></label>
           <select id="kehadiran" name="kehadiran" class="form-input" required>
             <option value="">-- Pilih Kehadiran --</option>
             <option value="Hadir">✓ Insya Allah Hadir</option>
@@ -655,9 +670,9 @@
         </div>
 
         <div>
-          <label class="block text-xs font-semibold text-amber-800 mb-1.5">Ucapan &amp; Doa <span class="text-red-500">*</span></label>
+          <label class="block text-xs font-semibold text-amber-100 mb-1.5">Ucapan &amp; Doa <span class="text-red-400">*</span></label>
           <textarea id="ucapan" name="ucapan" rows="3" class="form-input resize-none" placeholder="Sampaikan ucapan dan doa terbaik anda..." required maxlength="500"></textarea>
-          <p class="text-right text-[10px] text-amber-700/50 mt-1"><span id="charCount">0</span>/500</p>
+          <p class="text-right text-[10px] text-amber-200/50 mt-1"><span id="charCount">0</span>/500</p>
         </div>
 
         <button type="submit" id="submitBtn" class="btn-gold w-full flex items-center justify-center gap-2">
@@ -669,10 +684,10 @@
       <!-- Guest Book -->
       <div class="mt-6">
         <div class="flex items-center justify-between mb-3">
-          <h3 class="font-playfair text-lg font-bold text-amber-900">
-            <i class="fas fa-book-open text-amber-600 mr-2"></i>Buku Tamu
+          <h3 class="font-playfair text-lg font-bold text-amber-50">
+            <i class="fas fa-book-open text-amber-300 mr-2"></i>Buku Tamu
           </h3>
-          <span class="text-xs text-amber-700/60"><span id="msgCount">0</span> Ucapan</span>
+          <span class="text-xs text-amber-200/60"><span id="msgCount">0</span> Ucapan</span>
         </div>
 
         <div class="garis-divider mb-3"></div>
@@ -680,7 +695,7 @@
         <div class="guest-book" id="guestBook">
           <div id="guestLoading" class="text-center py-8">
             <div class="spinner" style="border-color: rgba(201,162,39,0.3); border-top-color: var(--gold);"></div>
-            <p class="text-xs text-amber-700/60 mt-2">Memuat ucapan...</p>
+            <p class="text-xs text-amber-200/60 mt-2">Memuat ucapan...</p>
           </div>
         </div>
 
@@ -691,27 +706,27 @@
     </div>
   </section>
 
-  <!-- ========== FOOTER ========== -->
-  <section class="reveal px-4 pt-6 pb-12 text-center">
+  <!-- ========== FOOTER (Solid Dark Brown) ========== -->
+  <section class="reveal px-4 pt-6 pb-12 text-center" style="background-color: rgba(15, 8, 4, 0.98);">
     <img src="gunungan.png" alt="Gunungan" class="w-32 mx-auto mb-4 opacity-80 animate-float" onerror="this.style.display='none'">
 
     <div class="batik-divider mb-4"></div>
 
-    <p class="font-playfair italic text-amber-800/70 text-sm mb-3">
+    <p class="font-playfair italic text-amber-100/70 text-sm mb-3">
       "Matur nuwun sanget dumateng panjenengan sedaya ingkang sampun kersa ndherek mikul beban lan mberkasi adicara menika."
     </p>
 
-    <p class="text-xs text-amber-800/60 mb-4">
+    <p class="text-xs text-amber-100/60 mb-4">
       Kami yang berbahagia,<br>
       <span class="font-playfair font-bold text-lg gold-text">Kulawarga Besar Susilo &amp; Dewi</span>
     </p>
 
     <div class="garis-divider my-4"></div>
 
-    <p class="font-cinzel text-xs tracking-[0.3em] text-amber-700/60 mb-1">WASSALAMU'ALAIKUM WR. WB.</p>
+    <p class="font-cinzel text-xs tracking-[0.3em] text-amber-200/60 mb-1">WASSALAMU'ALAIKUM WR. WB.</p>
 
-    <div class="mt-6 pt-4 border-t border-amber-300/30">
-      <p class="text-[10px] text-amber-700/40 tracking-wide">DIBUAT OLEH</p>
+    <div class="mt-6 pt-4 border-t border-amber-400/20">
+      <p class="text-[10px] text-amber-300/40 tracking-wide">DIBUAT OLEH</p>
       <p class="font-cinzel text-sm font-bold gold-text tracking-wider">MALANG DIGITAL</p>
     </div>
   </section>
@@ -736,8 +751,8 @@
 /* ============================================================
    KONFIGURASI
    ============================================================ */
-const scriptURL = 'YOUR_GOOGLE_SCRIPT_URL_HERE';
-const weddingDate = new Date('2026-12-20T08:00:00').getTime();
+const scriptURL = 'https://script.google.com/macros/s/AKfycbzsFTJJDTA6zi_4ZKQjmlqGY4hWYJBxG-8Q0kfcqWCkCc41NRWsAPyU7L_XMJM7FYH-9w/exec';
+const weddingDate = new Date('2025-12-20T08:00:00').getTime();
 
 /* ============================================================
    DOM ELEMENTS
@@ -910,13 +925,13 @@ rsvpForm.addEventListener('submit', async (e) => {
    LOAD MESSAGES (GET from Google Sheets)
    ============================================================ */
 async function loadMessages() {
-  if (scriptURL === 'YOUR_GOOGLE_SCRIPT_URL_HERE') {
+  if (scriptURL === 'https://script.google.com/macros/s/AKfycbzsFTJJDTA6zi_4ZKQjmlqGY4hWYJBxG-8Q0kfcqWCkCc41NRWsAPyU7L_XMJM7FYH-9w/exec') {
     guestBook.innerHTML = `
       <div class="text-center py-8 px-4">
         <i class="fas fa-exclamation-triangle text-2xl text-amber-500/60 mb-3"></i>
-        <p class="text-xs text-amber-800/60 leading-relaxed">
+        <p class="text-xs text-amber-100/60 leading-relaxed">
           Google Script URL belum dikonfigurasi.<br>
-          Silakan set <code class="bg-amber-100/60 px-1.5 py-0.5 rounded text-amber-700">scriptURL</code> di JavaScript.
+          Silakan set <code class="bg-amber-100/10 px-1.5 py-0.5 rounded text-amber-300">scriptURL</code> di JavaScript.
         </p>
       </div>
     `;
@@ -927,7 +942,7 @@ async function loadMessages() {
   guestBook.innerHTML = `
     <div class="text-center py-8">
       <div class="spinner" style="border-color: rgba(201,162,39,0.3); border-top-color: var(--gold); margin: 0 auto;"></div>
-      <p class="text-xs text-amber-700/60 mt-2">Memuat ucapan...</p>
+      <p class="text-xs text-amber-200/60 mt-2">Memuat ucapan...</p>
     </div>
   `;
 
@@ -939,8 +954,8 @@ async function loadMessages() {
       guestBook.innerHTML = `
         <div class="text-center py-8">
           <i class="fas fa-feather text-3xl text-amber-400/50 mb-3"></i>
-          <p class="text-sm text-amber-800/60 italic">Belum ada ucapan.</p>
-          <p class="text-xs text-amber-700/50 mt-1">Jadilah yang pertama memberi doa!</p>
+          <p class="text-sm text-amber-100/60 italic">Belum ada ucapan.</p>
+          <p class="text-xs text-amber-200/50 mt-1">Jadilah yang pertama memberi doa!</p>
         </div>
       `;
       document.getElementById('msgCount').textContent = '0';
@@ -949,10 +964,10 @@ async function loadMessages() {
 
     guestBook.innerHTML = data.map(msg => {
       const hadirClass = msg.kehadiran === 'Hadir' 
-        ? 'bg-green-100/70 text-green-700 border border-green-300/40'
+        ? 'bg-green-500/20 text-green-300 border border-green-400/30'
         : msg.kehadiran === 'Tidak Hadir'
-        ? 'bg-red-100/70 text-red-600 border border-red-300/40'
-        : 'bg-yellow-100/70 text-yellow-700 border border-yellow-300/40';
+        ? 'bg-red-500/20 text-red-300 border border-red-400/30'
+        : 'bg-yellow-500/20 text-yellow-300 border border-yellow-400/30';
 
       const hadirIcon = msg.kehadiran === 'Hadir' 
         ? 'fa-check-circle' 
@@ -961,17 +976,17 @@ async function loadMessages() {
         : 'fa-question-circle';
 
       return `
-        <div class="bg-white/50 border border-amber-200/50 rounded-lg p-4 mb-3 shadow-sm hover:shadow-md transition-shadow">
+        <div class="bg-white/5 border border-amber-300/20 rounded-lg p-4 mb-3 shadow-sm hover:shadow-md transition-shadow">
           <div class="flex justify-between items-start mb-2 gap-2">
-            <h4 class="font-semibold text-sm text-amber-900 leading-tight">
-              <i class="fas fa-user-circle text-amber-600/70 mr-1.5"></i>${escapeHtml(msg.nama)}
+            <h4 class="font-semibold text-sm text-amber-50 leading-tight">
+              <i class="fas fa-user-circle text-amber-300/70 mr-1.5"></i>${escapeHtml(msg.nama)}
             </h4>
             <span class="text-[10px] px-2 py-1 rounded-full font-semibold whitespace-nowrap ${hadirClass}">
               <i class="fas ${hadirIcon} mr-1"></i>${escapeHtml(msg.kehadiran)}
             </span>
           </div>
-          <p class="text-xs text-amber-800/80 leading-relaxed mb-2">${escapeHtml(msg.ucapan)}</p>
-          <p class="text-[10px] text-amber-600/50">
+          <p class="text-xs text-amber-100/80 leading-relaxed mb-2">${escapeHtml(msg.ucapan)}</p>
+          <p class="text-[10px] text-amber-300/50">
             <i class="far fa-clock mr-1"></i>${formatDate(msg.timestamp)}
           </p>
         </div>
@@ -985,7 +1000,7 @@ async function loadMessages() {
     guestBook.innerHTML = `
       <div class="text-center py-8">
         <i class="fas fa-wifi text-2xl text-red-400/60 mb-3"></i>
-        <p class="text-xs text-amber-800/60 mb-3">Gagal memuat ucapan.</p>
+        <p class="text-xs text-amber-100/60 mb-3">Gagal memuat ucapan.</p>
         <button onclick="loadMessages()" class="btn-outline-gold text-xs">
           <i class="fas fa-rotate-right"></i> Coba Lagi
         </button>
