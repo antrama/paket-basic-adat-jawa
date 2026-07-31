@@ -925,20 +925,6 @@ rsvpForm.addEventListener('submit', async (e) => {
    LOAD MESSAGES (GET from Google Sheets via JSONP to bypass CORS)
    ============================================================ */
 function loadMessages() {
-  if (scriptURL === 'https://script.google.com/macros/s/AKfycbyY6T7oMJM29WdFSWqvAjna59UUfETy0Sn1UbcoYvcNQ3xjm1djdOEZnpA2cvGcOwma/exec') {
-    guestBook.innerHTML = `
-      <div class="text-center py-8 px-4">
-        <i class="fas fa-exclamation-triangle text-2xl text-amber-500/60 mb-3"></i>
-        <p class="text-xs text-amber-100/60 leading-relaxed">
-          Google Script URL belum dikonfigurasi.<br>
-          Silakan set <code class="bg-amber-100/10 px-1.5 py-0.5 rounded text-amber-300">scriptURL</code> di JavaScript.
-        </p>
-      </div>
-    `;
-    document.getElementById('msgCount').textContent = '0';
-    return;
-  }
-
   // Tampilkan loading
   guestBook.innerHTML = `
     <div class="text-center py-8">
