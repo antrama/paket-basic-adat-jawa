@@ -47,13 +47,14 @@
   .font-playfair { font-family: 'Playfair Display', serif; }
   .font-jakarta { font-family: 'Plus Jakarta Sans', sans-serif; }
 
-  /* Wrapper Utama */
+  /* Wrapper Utama (Background di-loop dengan ukuran 350px) */
   .invitation-wrapper {
     max-width: 480px;
     margin: 0 auto;
     position: relative;
-    background-image: url('background.png');
-    background-size: cover;
+    background-image: url('background.png'); 
+    background-repeat: repeat; /* DIUBAH: Loop berulang */
+    background-size: 350px 350px; /* DIUBAH: Ukuran tile diperkecil */
     background-position: center;
     background-attachment: scroll; 
     min-height: 100vh;
